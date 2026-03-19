@@ -1,22 +1,29 @@
+# Project: _printf
+
+## Description
+This project is a custom implementation of the C standard library function `printf`.
+
+## Flowchart
+The following diagram describes the logic of the `_printf` function:
+
 ```mermaid
 graph TD
-    A[Start _printf] --> B{format[i] == '\0'?}
-    B -- Yes --> C[Return Total Count]
-    B -- No --> D{format[i] == '%'}
-    
-    D -- No --> E[Write char to stdout]
-    E --> F[Total Count++]
-    F --> G[i++]
-    G --> B
+    Start[Debut _printf] --> Condition{Fin de chaine?}
+    Condition -- Oui --> Fin[Retourne le Compteur]
+    Condition -- Non --> EstPourcent{Est-ce un % ?}
 
-    D -- Yes --> H{Check format[i+1]}
-    H -- 'c' --> I[Call print_char]
-    H -- 's' --> J[Call print_string]
-    H -- '%' --> K[Write '%']
-    H -- '\0' --> L[Return -1]
+    EstPourcent -- No --> PrintChar[Ecrire le caractere]
+    PrintChar --> Incr1[Compteur + 1]
+    Incr1 --> Next1[i + 1]
+    Next1 --> Condition
+
+    EstPourcent -- Yes --> CheckNext{Lettre apres % ?}
+    CheckNext -- c --> CallC[Appeler print_char]
+    CheckNext -- s --> CallS[Appeler print_string]
+    CheckNext -- % --> CallP[Ecrire %]
     
-    I --> M[Total Count += return]
-    J --> M
-    K --> M
-    M --> N[i += 2]
-    N --> B
+    CallC --> Sum[Ajouter au Compteur]
+    CallS --> Sum
+    CallP --> Sum
+    Sum --> Next2[i + 2]
+    Next2 --> Condition
