@@ -10,6 +10,9 @@ All files will be compiled on Ubuntu 20.04 LTS using gcc, using the options `-Wa
 ```bash
 gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
 
+### Project Flowchart
+
+```mermaid
 graph TD
     A[Start _printf] --> B{format[i] == '\0'?}
     B -- Yes --> C[Return Total Count]
