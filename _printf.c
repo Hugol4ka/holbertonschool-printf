@@ -1,11 +1,12 @@
 #include "main.h"
+#include <stdarg.h>
 
 /**
  * _printf - Produit une sortie selon un format.
  * @format: Chaîne de caractères contenant le texte et les directives.
  * * Return: Le nombre total de caractères imprimés.
  */
-int _printf(const char *textInitial, ...)
+int _printf(const char *format, ...)
 {
     /* --- 1. DECLARATIONS --- */
     va_list bag; /* liste pour stocker les arguments (...) */
@@ -13,18 +14,20 @@ int _printf(const char *textInitial, ...)
     int idx = 0; /* index pour parcourir la chaîne 'textInitial' */
 
     /* --- 2. INITIALISATION --- */
-    if (textInitial == NULL)
+    if (format == NULL)
 	return (-1); /* Sécurité */
 
-	va_start (bag, textInitial);
+	va_start (bag, format);
 
     /* --- 3. LA BOUCLE PRINCIPALE --- */
-    while (textInitial != '\0')
+    while (format[idx] != '\0')
     {
-        if (textInitial[idx] != '%')
-			write (1, &textInitial[idx], 1);/* -> Imprime le caractère directement avec write */
-        	idx++;
-
+        if (textInitial[idx + 1] == '%') /* On regarde le suivant sans bouger idx */
+    {
+        write(1, &textInitial[idx + 1], 1); /* On affiche le DEUXIÈME % */
+        cpt++;
+        idx++; /* On "saute" le deuxième % pour que la boucle ne le traite pas au prochain tour */
+    }
         /* CAS B : On a trouvé un '%' */
         /* -> Regarde le caractère juste après (format[i + 1]) */
         
