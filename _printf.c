@@ -14,17 +14,16 @@ int _printf(const char *textInitial, ...)
 
     /* --- 2. INITIALISATION --- */
     if (textInitial == NULL)
-	return (NULL); /* Sécurité */
+	return (-1); /* Sécurité */
 
 	va_start (bag, textInitial);
 
     /* --- 3. LA BOUCLE PRINCIPALE --- */
-    while (textInitial != '\0')/* INDICE : Utilise une boucle 'while' pour lire 'format' tant qu'on n'est pas à '\0' */
+    while (textInitial != '\0')
     {
-        if (textInitial[idx] != '%') /* CAS A : Le caractère actuel n'est PAS un '%' */
-        {
+        if (textInitial[idx] != '%')
 			write (1, &textInitial[idx], 1);/* -> Imprime le caractère directement avec write */
-        	idx ++;/* -> Incrémente ton compteur */
+        	idx++;
 
         /* CAS B : On a trouvé un '%' */
         /* -> Regarde le caractère juste après (format[i + 1]) */
