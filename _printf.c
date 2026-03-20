@@ -22,12 +22,12 @@ int _printf(const char *format, ...)
     /* --- 3. LA BOUCLE PRINCIPALE --- */
     while (format[idx] != '\0')
     {
-        if (textInitial[idx + 1] == '%') /* On regarde le suivant sans bouger idx */
-    {
-        write(1, &textInitial[idx + 1], 1); /* On affiche le DEUXIÈME % */
-        cpt++;
-        idx++; /* On "saute" le deuxième % pour que la boucle ne le traite pas au prochain tour */
-    }
+        if (format[idx + 1] == '%') /* On regarde le suivant sans bouger idx */
+    	{
+        	write(1, &format[idx + 1], 1); /* On affiche le DEUXIÈME % */
+        	cpt++;
+        	idx++; /* On "saute" le deuxième % pour que la boucle ne le traite pas au prochain tour */
+    	}
         /* CAS B : On a trouvé un '%' */
         /* -> Regarde le caractère juste après (format[i + 1]) */
         
