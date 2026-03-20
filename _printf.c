@@ -1,52 +1,77 @@
 #include "main.h"
+#include <unistd.h>
 #include <stdarg.h>
+#include <stddef.h> /* Pour NULL */
 
 /**
  * _printf - Produit une sortie selon un format.
  * @format: Chaîne de caractères contenant le texte et les directives.
- * * Return: Le nombre total de caractères imprimés.
+ *
+ * Return: Le nombre total de caractères imprimés, ou -1 en cas d'erreur.
  */
 int _printf(const char *format, ...)
 {
-    /* --- 1. DECLARATIONS --- */
-    va_list bag; /* liste pour stocker les arguments (...) */
-    int cpt = 0; /* compteur pour le retour final */
-    int idx = 0; /* index pour parcourir la chaîne 'textInitial' */
+    /* --- 1. DECLARATIONS (Betty t'oblige à tout mettre ici) --- */
+    va_list args;
+    int count = 0; /* Ton score final */
+    int i = 0;     /* Ton index pour parcourir 'format' */
+    int (*pfunc)(va_list); /* Le pointeur pour stocker la fonction trouvée */
 
-    /* --- 2. INITIALISATION --- */
-    if (format == NULL)
-	return (-1); /* Sécurité */
+    /* --- 2. CAS LIMITES MORTELS (Edge Cases) --- */
+    /* Que se passe-t-il si format est totalement NULL ? */
+    if (/* À TOI DE JOUER : Condition si format n'existe pas */)
+        return (-1);
 
-	va_start (bag, format);
+    /* --- 3. INITIALISATION --- */
+    /* Ouvre la valise d'arguments variadiques */
+    /* À TOI DE JOUER : Utilise va_start */
 
-    /* --- 3. LA BOUCLE PRINCIPALE --- */
-    while (format[idx] != '\0')
+    /* --- 4. LA BOUCLE PRINCIPALE --- */
+    while (format != NULL && format[i] != '\0')
     {
-        if (format[idx + 1] == '%') /* On regarde le suivant sans bouger idx */
-    	{
-        	write(1, &format[idx + 1], 1); /* On affiche le DEUXIÈME % */
-        	cpt++;
-        	idx++; /* On "saute" le deuxième % pour que la boucle ne le traite pas au prochain tour */
-    	}
-        /* CAS B : On a trouvé un '%' */
-        /* -> Regarde le caractère juste après (format[i + 1]) */
-        
-        /* SOUS-CAS B.1 : C'est un 'c' */
-        /* -> Appelle une fonction qui gère les caractères (Hugo s'en occupe) */
-        
-        /* SOUS-CAS B.2 : C'est un 's' */
-        /* -> Appelle une fonction qui gère les strings (Hugo s'en occupe) */  int print_string(va_list bag)
+        if (format[i] == '%')
+        {
+            /* ☠️ PIÈGE : Et si le % est le tout dernier caractère de la chaîne ? (ex: "Coucou %") */
+            if (format[i + 1] == '\0')
+                return (-1); /* Comportement standard de printf : erreur */
 
-        /* SOUS-CAS B.3 : C'est un autre '%' */
-        /* -> Imprime simplement le caractère '%' avec write */
+            /* On cherche si le caractère SUIVANT correspond à une fonction */
+            pfunc = get_print_func(format[i + 1]);
 
-        /* SOUS-CAS B.4 : C'est fini ou inconnu ? */
-        /* -> Gère les erreurs ou avance l'index */
+            if (pfunc != NULL)
+            {
+                /* BINGO ! L'aiguilleur a trouvé la fonction ('c' ou 's') */
+                /* À TOI DE JOUER :
+                 * 1. Appelle pfunc en lui passant 'args'
+                 * 2. Ajoute son résultat à 'count'
+                 * 3. Avance 'i' de 1 pour "sauter" le spécificateur (ex: le 's')
+                 */
+                 
+                 
+                 
+            }
+            else
+            {
+                /* CAS : % inconnu (ex: "%z") ou double %% */
+                /* On affiche le '%' puis le caractère inconnu */
+                /* À TOI DE JOUER : Imprime le '%' et le format[i+1], puis met à jour 'count' et 'i' */
+                
+                
+                
+            }
+        }
+        else
+        {
+            /* C'est un caractère normal (ex: le 'H' de "Hello") */
+            write(1, &format[i], 1);
+            count++;
+        }
+        i++; /* On passe au caractère suivant de la chaîne */
     }
 
-    /* --- 4. NETTOYAGE --- */
-    /* INDICE : N'oublie jamais de fermer ta liste avec va_end */
+    /* --- 5. NETTOYAGE --- */
+    /* Ferme la valise ! */
+    /* À TOI DE JOUER : Utilise va_end */
 
-    /* --- 5. RETOUR --- */
-    /* INDICE : Renvoie le nombre total de caractères affichés */
+    return (count);
 }
