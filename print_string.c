@@ -1,7 +1,4 @@
 #include"main.h"
-#include<unistd.h>
-#include<stdarg.h>
-#include<stddef.h>
 
 /**
  * print_string - Prints a string from a va_list argument
