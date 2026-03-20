@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
         /* -> Appelle une fonction qui gère les caractères (Hugo s'en occupe) */
         
         /* SOUS-CAS B.2 : C'est un 's' */
-        /* -> Appelle une fonction qui gère les strings (Hugo s'en occupe) */
+        /* -> Appelle une fonction qui gère les strings (Hugo s'en occupe) */  int print_string(va_list bag)
 
         /* SOUS-CAS B.3 : C'est un autre '%' */
         /* -> Imprime simplement le caractère '%' avec write */
