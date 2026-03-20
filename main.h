@@ -4,6 +4,7 @@
 /* --- Standard Libraries --- */
 #include <stdarg.h> /* Pour les macros va_list, va_start, va_arg, va_end */
 #include <unistd.h> /* Pour la fonction write() */
+#include<stddef.h> /*Pour le Null pointers.*/
 
 /* --- Main Function Prototype --- */
 int _printf(const char *format, ...);
