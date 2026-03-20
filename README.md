@@ -3,6 +3,14 @@
 ## Description
 This project is a custom implementation of the C standard library function `printf`.
 
+## Supported Format Specifiers
+
+| Specifier | Description | Function File |
+| :---: | :--- | :--- |
+| **`%c`** | Prints a single character | `print_char.c` |
+| **`%s`** | Prints a string of characters | `print_string.c` |
+| **`%%`** | Prints a percent sign | `print_percent.c`
+
 ## Flowchart
 The following diagram describes the logic of the `_printf` function:
 
