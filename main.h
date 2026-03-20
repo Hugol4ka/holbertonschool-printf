@@ -6,7 +6,7 @@
 #include <unistd.h> /* Pour la fonction write() */
 
 /* --- Main Function Prototype --- */
-int _printf(const char *textInitial, ...);
+int _printf(const char *format, ...);
 
 /* --- Helper Functions Prototypes --- */
 /* Ces fonctions seront codees dans un autre fichier (ex: print_helpers.c) */
