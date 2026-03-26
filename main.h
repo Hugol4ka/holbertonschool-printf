@@ -1,16 +1,24 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/* --- Standard Libraries --- */
-#include <stdarg.h> /* Pour les macros va_list, va_start, va_arg, va_end */
-#include <unistd.h> /* Pour la fonction write() */
-#include<stddef.h> /*Pour le Null pointers.*/
+#include <stdarg.h> /* Pour les macros */
+#include <unistd.h> /*fonction write()*/
+#include<stddef.h> /*Null*/
 
-/* --- Main Function Prototype --- */
+/**
+ * struct print_t - Structure for format specifiers and their handlers
+ * @type: Format specifier character
+ * @f: Function pointer to handle the format specifier
+ */
+
+typedef struct print_t
+{
+	char *type;
+	int (*f)(va_list);
+} print_t;
+
+
 int _printf(const char *format, ...);
-
-/* --- Helper Functions Prototypes --- */
-/* Ces fonctions seront codees dans un autre fichier (ex: print_helpers.c) */
 int print_char(va_list args);
 int print_string(va_list args);
 int print_percent(va_list args);
