@@ -1,52 +1,79 @@
 #include "main.h"
+#include <unistd.h>
 #include <stdarg.h>
+#include <stddef.h>
 
 /**
  * _printf - Produit une sortie selon un format.
  * @format: Chaîne de caractères contenant le texte et les directives.
- * * Return: Le nombre total de caractères imprimés.
+ *
+ * Return: Le nombre total de caractères imprimés, ou -1 en cas d'erreur.
  */
+
 int _printf(const char *format, ...)
 {
     /* --- 1. DECLARATIONS --- */
-    va_list bag; /* liste pour stocker les arguments (...) */
-    int cpt = 0; /* compteur pour le retour final */
-    int idx = 0; /* index pour parcourir la chaîne 'textInitial' */
+    va_list args;
+    int count = 0; /* score final */
+    int i = 0;     /* index pour parcourir 'format' */
+    int (*pfunc)(va_list); /* pointeur pour stocker la fonction trouvée */
 
-    /* --- 2. INITIALISATION --- */
+    /* --- 2. CAS LIMITES MORTELS (Edge Cases) --- */
     if (format == NULL)
-	return (-1); /* Sécurité */
+        return (-1);
 
-	va_start (bag, format);
+    /* --- 3. INITIALISATION --- */
+    va_start(args, format);
 
-    /* --- 3. LA BOUCLE PRINCIPALE --- */
-    while (format[idx] != '\0')
+    /* --- 4. LA BOUCLE PRINCIPALE --- */
+    while (format != NULL && format[i] != '\0')
     {
-        if (textInitial[idx + 1] == '%') /* On regarde le suivant sans bouger idx */
-    {
-        write(1, &textInitial[idx + 1], 1); /* On affiche le DEUXIÈME % */
-        cpt++;
-        idx++; /* On "saute" le deuxième % pour que la boucle ne le traite pas au prochain tour */
+        if (format[i] == '%')
+        {
+            /* PIÈGE : % est le tout dernier caractère de la chaîne */
+            if (format[i + 1] == '\0')    
+			{
+				va_end (args);
+				return (-1);
+			}
+
+            /* On cherche si le caractère SUIVANT correspond à une fonction */
+            pfunc = get_print_func(format[i + 1]);
+
+            if (pfunc != NULL)
+            {
+                count += pfunc(args); /* Appel de pfunc en lui passant args */
+				i++;
+            }
+            else
+            {
+             	/* CAS : double %% */
+                if (format[i + 1] == '%')
+                {
+                    write(1, "%", 1);
+                    count++;
+                }
+                /* CAS : % inconnu (ex: "%z") */
+                else
+                {
+                    write(1, "%", 1);     /* Imprime le '%' */
+                    write(1, &format[i + 1], 1); /* Imprime le char inconnu */
+                    count += 2;
+                }
+                i++; /* On saute le format[i+1] pour ne pas le relire à la boucle suivante */
+            }
+        }
+        else
+        {
+            /* caractère normal */
+            write(1, &format[i], 1);
+            count++;
+        }
+        i++; /* caractère suivant de la chaîne */
     }
-        /* CAS B : On a trouvé un '%' */
-        /* -> Regarde le caractère juste après (format[i + 1]) */
-        
-        /* SOUS-CAS B.1 : C'est un 'c' */
-        /* -> Appelle une fonction qui gère les caractères (Hugo s'en occupe) */
-        
-        /* SOUS-CAS B.2 : C'est un 's' */
-        /* -> Appelle une fonction qui gère les strings (Hugo s'en occupe) */  int print_string(va_list bag)
 
-        /* SOUS-CAS B.3 : C'est un autre '%' */
-        /* -> Imprime simplement le caractère '%' avec write */
+    /* --- 5. NETTOYAGE --- */
+    va_end (args);
 
-        /* SOUS-CAS B.4 : C'est fini ou inconnu ? */
-        /* -> Gère les erreurs ou avance l'index */
-    }
-
-    /* --- 4. NETTOYAGE --- */
-    /* INDICE : N'oublie jamais de fermer ta liste avec va_end */
-
-    /* --- 5. RETOUR --- */
-    /* INDICE : Renvoie le nombre total de caractères affichés */
+    return (count);
 }
