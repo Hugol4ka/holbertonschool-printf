@@ -8,7 +8,7 @@
 
 int print_percent(va_list bag)
 {
-	void(bag);
+	(void)bag;
 	write(1, "%", 1);
 
 	return (1);
