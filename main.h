@@ -23,5 +23,10 @@ int print_char(va_list args);
 int print_string(va_list args);
 int print_percent(va_list args);
 int (*get_print_func(char s))(va_list);
+int print_int(va_list args);
+int print_unsigned(unsigned long n);
+int print_float(va_list args);
+int print_unsigned_long(unsigned long n);
+int print_frac_6(unsigned long n);
 
 #endif
