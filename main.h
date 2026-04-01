@@ -28,5 +28,10 @@ int print_unsigned(unsigned long n);
 int print_float(va_list args);
 int print_unsigned_long(unsigned long n);
 int print_frac_6(unsigned long n);
+int print_base_u(unsigned int n, const char *digits, unsigned int base);
+int print_unsigned_dec(va_list args);
+int print_octal(va_list args);
+int print_hex_lower(va_list args);
+int print_hex_upper(va_list args);
 
 #endif
