@@ -17,7 +17,7 @@ typedef struct print_t
 	int (*f)(va_list);
 } print_t;
 
-
+int print_pointer(va_list args);
 int _printf(const char *format, ...);
 int print_char(va_list args);
 int print_string(va_list args);
