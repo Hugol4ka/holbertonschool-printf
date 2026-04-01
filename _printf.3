@@ -1,0 +1,92 @@
+.\" ************************************************************
+.\" _printf(3) - custom formatted output function
+.\" Holberton School educational project
+.\" ************************************************************
+.TH _printf 3 "March 2026" "Holberton" "Library Functions Manual"
+
+.SH NAME
+_printf \- formatted output conversion (educational implementation)
+
+.SH SYNOPSIS
+.nf
+.B #include "main.h"
+.BI "int _printf(const char *" format ", ...);"
+.fi
+
+.SH DESCRIPTION
+The \fB_printf\fR function writes output to standard output according to
+\fIformat\fR.
+
+In the current implementation, supported conversion specifiers are:
+.IP \(bu 2
+\fB%c\fR: print one character
+.IP \(bu 2
+\fB%s\fR: print one string
+.IP \(bu 2
+\fB%%\fR: print one percent sign
+.IP \(bu 2
+\fB%d\fR: print one signed decimal integer
+.IP \(bu 2
+\fB%i\fR: print one signed decimal integer
+.IP \(bu 2
+\fB%f\fR: print one floating-point number with 6 digits after the decimal point
+
+For unknown specifiers (example: \fB%q\fR), this implementation prints
+both characters literally (\fB%q\fR).
+
+For \fB%s\fR, if the argument is \fBNULL\fR, this implementation prints
+\fB(null)\fR.
+
+For \fB%f\fR, this implementation uses a fixed precision of 6 digits
+after the decimal point.
+
+.SH RETURN VALUE
+On success, \fB_printf\fR returns the number of characters printed
+(excluding the final null byte).
+
+On failure, \fB-1\fR is returned.
+
+Failure cases in this implementation include:
+.IP \(bu 2
+\fIformat\fR is \fBNULL\fR
+.IP \(bu 2
+\fIformat\fR ends with a trailing \fB%\fR
+
+.SH ERRORS
+This function may fail if an underlying \fBwrite(2)\fR call fails.
+
+.SH LIMITATIONS
+This implementation does not yet support:
+.IP \(bu 2
+unsigned integer conversion (\fB%u\fR)
+.IP \(bu 2
+octal/hexadecimal conversions (\fB%o\fR, \fB%x\fR, \fB%X\fR)
+.IP \(bu 2
+pointer conversion (\fB%p\fR)
+.IP \(bu 2
+flags, field width, precision control and length modifiers
+
+.SH EXAMPLES
+.B _printf("Hello %s\\n", "Holberton");
+.br
+prints "Hello Holberton" followed by a newline.
+
+.B _printf("Number: %d\\n", -42);
+.br
+prints "Number: -42" followed by a newline.
+
+.B _printf("Pi: %f\\n", 3.141592);
+.br
+prints "Pi: 3.141592" followed by a newline.
+
+.B _printf("Rate: 100%%\\n");
+.br
+prints "Rate: 100%" followed by a newline.
+
+.B _printf("[%q]\\n");
+.br
+prints "[%q]" followed by a newline in this implementation.
+
+.SH SEE ALSO
+.BR printf (3),
+.BR write (2)
