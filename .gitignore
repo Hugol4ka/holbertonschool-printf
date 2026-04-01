@@ -1,0 +1,14 @@
+# Fichiers objets
+*.o
+
+# Bibliothèques statiques
+*.a
+
+# Exécutables
+test_printf
+my_printf
+printf
+
+# Fichiers temporaires
+*~
+*.swp
