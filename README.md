@@ -96,7 +96,8 @@ gcc -Wall -Wextra -Werror -pedantic main.c libftprintf.a -o _printf_test
 ## Flowchart
 The following diagram describes the logic of the `_printf` function:
 
-<img width="985" height="1601" alt="Final_flowchart_printf drawio" src="https://github.com/user-attachments/assets/755c1c92-fa44-43ac-bb35-17548b3c7da0" />
+<img width="985" height="1601" alt="printf-final_flowchart drawio" src="https://github.com/user-attachments/assets/9165c0cd-e555-4ffc-8124-ea3f2c6b1c26" />
+
 
 ## 📖 Documentation
 
