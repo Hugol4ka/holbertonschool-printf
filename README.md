@@ -47,7 +47,7 @@ The following functions and macros from the standard library are used in this pr
 
 
 ## Technologies used 
-![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![VS Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) ![Groff](https://img.shields.io/badge/Groff-131313?style=for-the-badge&logo=gnu&logoColor=white)
+![C](https://img.shields.io/badge/Language-C-00599C?style=for-the-badge&logo=c&logoColor=white) ![Makefile](https://img.shields.io/badge/Build-Makefile-00599C?style=for-the-badge&logo=gnu&logoColor=white) ![Git](https://img.shields.io/badge/Git-F05033?style=for-the-badge&logo=git&logoColor=white) ![Linux](https://img.shields.io/badge/OS-Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![VS Code](https://img.shields.io/badge/Editor-VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white) ![Groff](https://img.shields.io/badge/Doc-Groff-131313?style=for-the-badge&logo=gnu&logoColor=white)
 
 ## 📂 Project Structure
 
