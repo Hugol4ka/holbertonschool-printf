@@ -1,9 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdarg.h> /* Pour les macros */
-#include <unistd.h> /*fonction write()*/
-#include<stddef.h> /*Null*/
+#include <stdarg.h>
+#include <unistd.h>
+#include <stddef.h>
 
 /**
  * struct print_t - Structure for format specifiers and their handlers

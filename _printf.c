@@ -4,76 +4,75 @@
 #include <stddef.h>
 
 /**
- * _printf - Produit une sortie selon un format.
- * @format: Chaîne de caractères contenant le texte et les directives.
+ * _printf - Produces output according to a format.
+ * @format: Character string containing text and format specifiers.
  *
- * Return: Le nombre total de caractères imprimés, ou -1 en cas d'erreur.
+ * Return: The total number of characters printed, or -1 on error.
  */
-
 int _printf(const char *format, ...)
 {
     /* --- 1. DECLARATIONS --- */
     va_list args;
-    int count = 0; /* score final */
-    int i = 0;     /* index pour parcourir 'format' */
-    int (*pfunc)(va_list); /* pointeur pour stocker la fonction trouvée */
+    int count = 0;         /* Total number of printed characters */
+    int i = 0;             /* Iterator for the 'format' string */
+    int (*pfunc)(va_list); /* Function pointer to hold the matching print function */
 
-    /* --- 2. CAS LIMITES MORTELS (Edge Cases) --- */
+    /* --- 2. EDGE CASES --- */
     if (format == NULL)
         return (-1);
 
-    /* --- 3. INITIALISATION --- */
+    /* --- 3. INITIALIZATION --- */
     va_start(args, format);
 
-    /* --- 4. LA BOUCLE PRINCIPALE --- */
+    /* --- 4. MAIN LOOP --- */
     while (format != NULL && format[i] != '\0')
     {
         if (format[i] == '%')
         {
-            /* PIÈGE : % est le tout dernier caractère de la chaîne */
+            /* EDGE CASE: '%' is the very last character of the string */
             if (format[i + 1] == '\0')    
-			{
-				va_end (args);
-				return (-1);
-			}
+            {
+                va_end(args);
+                return (-1);
+            }
 
-            /* On cherche si le caractère SUIVANT correspond à une fonction */
+            /* Check if the NEXT character matches a valid format specifier */
             pfunc = get_print_func(format[i + 1]);
 
             if (pfunc != NULL)
             {
-                count += pfunc(args); /* Appel de pfunc en lui passant args */
-				i++;
+                count += pfunc(args); /* Execute the matched function */
+                i++;
             }
             else
             {
-             	/* CAS : double %% */
+                /* CASE: Double %% */
                 if (format[i + 1] == '%')
                 {
                     write(1, "%", 1);
                     count++;
                 }
-                /* CAS : % inconnu (ex: "%z") */
+                /* CASE: Unknown format specifier (e.g., "%z") */
                 else
                 {
-                    write(1, "%", 1);     /* Imprime le '%' */
-                    write(1, &format[i + 1], 1); /* Imprime le char inconnu */
+                    write(1, "%", 1);            /* Print the '%' */
+                    write(1, &format[i + 1], 1); /* Print the unknown character */
                     count += 2;
                 }
-                i++; /* On saute le format[i+1] pour ne pas le relire à la boucle suivante */
+                i++; /* Skip the evaluated character for the next iteration */
             }
         }
         else
         {
-            /* caractère normal */
+            /* CASE: Regular character */
             write(1, &format[i], 1);
             count++;
         }
-        i++; /* caractère suivant de la chaîne */
+        i++; /* Move to the next character in the string */
     }
 
-    /* --- 5. NETTOYAGE --- */
-    va_end (args);
+    /* --- 5. CLEANUP --- */
+    va_end(args);
 
     return (count);
 }
