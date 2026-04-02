@@ -49,17 +49,23 @@ The following functions and macros from the standard library are used in this pr
 ## Technologies used 
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![VS Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) ![Groff](https://img.shields.io/badge/Groff-131313?style=for-the-badge&logo=gnu&logoColor=white)
 
-## 📂 Files
+## 📂 Project Structure
 
-* `_printf.c`: Main function that handles the format string.
-* `get_print_func.c`: Logic to find the right function for a specifier.
-* `main.h`: Header file containing all prototypes and structures.
-* `print_int.c`: Handles `%d` and `%i` specifiers.
-* `print_string.c`: Handles the `%s` specifier.
-* `print_percent.c`: Handles the `%%` specifier.
-* `print_char.c`: Handles the `%c` specifier.
-* `print_float.c`: Handles the `%f` specifier.
-* `print_base.c`: Handles the `%u` specifier.
+| File | Description |
+| :--- | :--- |
+| `_printf.c` | Main function file containing the `_printf` engine and format parser |
+| `get_print_func.c` | Logic to select the appropriate function for each conversion specifier |
+| `main.h` | Header file with structures, function prototypes, and standard library inclusions |
+| `_printf.3` | Custom manual page in Groff format for documentation |
+| `Makefile` | Script to automate compilation and project management |
+| `.gitignore` | Excludes binary files and temporary objects from the repository |
+| `print_char.c` | Handles character output (`%c`) |
+| `print_string.c` | Handles string output (`%s`) |
+| `print_percent.c` | Handles the percent sign output (`%%`) |
+| `print_int.c` | Handles decimal and integer specifiers (`%d`, `%i`) |
+| `print_base.c` | Handles conversion for different bases (Binary, Octal, Hex...) |
+| `print_float.c` | Handles floating-point numbers implementation |
+| `print_pointer.c` | Handles memory address printing (`%p`) |.
   
 ## 🛠️ Installation & Compilation
 
