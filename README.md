@@ -66,7 +66,17 @@ The following functions and macros from the standard library are used in this pr
 | `print_base.c` | Handles conversion for different bases (Binary, Octal, Hex...) |
 | `print_float.c` | Handles floating-point numbers implementation |
 | `print_pointer.c` | Handles memory address printing (`%p`) |.
-  
+
+## 🚀 Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine.
+
+### 1. Installation
+Clone the repository using Git:
+
+```bash
+git clone [https://github.com/votre_pseudo/holbertonschool-printf.git](https://github.com/votre_pseudo/holbertonschool-printf.git)
+```  
 ## 🛠️ Installation & Compilation
 
 This project uses a **Makefile** to automate the build process and create the static library.
@@ -90,7 +100,7 @@ Run the following commands in the root directory of the project:
 To test the function with your own `main.c` file, simply link the library during compilation:
 
 ```bash
-gcc -Wall -Wextra -Werror -pedantic main.c libftprintf.a -o _printf_test 
+gcc -Wall -Wextra -Werror -pedantic main.c libprintf.a -o _printf_test 
 ```
 
 ## Flowchart
