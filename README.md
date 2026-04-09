@@ -67,6 +67,22 @@ The following functions and macros from the standard library are used in this pr
 | `print_float.c` | Handles floating-point numbers implementation |
 | `print_pointer.c` | Handles memory address printing (`%p`) |.
 
+## Flowchart
+The following diagram describes the logic of the `_printf` function:
+
+<img width="985" height="1602" alt="Flowchart_projetPrintf" src="https://github.com/user-attachments/assets/f6432e9b-21e5-486e-b229-2a9f133dd526" />
+
+## 📖 Documentation
+
+The project includes a custom manual page that follows the standard Linux programmer's manual format. It provides a detailed description of the function's syntax, return values, and supported conversion specifiers.
+
+### How to access the manual
+To view the manual page, use the following command from the root of the repository:
+
+```bash
+man ./_printf.3
+```
+
 ## 🚀 Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine.
@@ -95,35 +111,6 @@ Run the following commands in the root directory of the project:
 | `make fclean` | Removes object files AND the final library file |
 | `make re` | Performs a full cleanup followed by a fresh compilation (`fclean` + `make`) |
 
-### 3. Usage in your project
-
-To test the function with your own `main.c` file, simply link the library during compilation:
-
-```bash
-gcc -Wall -Wextra -Werror -pedantic main.c libprintf.a -o _printf_test 
-```
-
-## Flowchart
-The following diagram describes the logic of the `_printf` function:
-
-<img width="985" height="1602" alt="Flowchart_projetPrintf" src="https://github.com/user-attachments/assets/f6432e9b-21e5-486e-b229-2a9f133dd526" />
-
-
-
-## 📖 Documentation
-
-The project includes a custom manual page that follows the standard Linux programmer's manual format. It provides a detailed description of the function's syntax, return values, and supported conversion specifiers.
-
-### How to access the manual
-To view the manual page, use the following command from the root of the repository:
-
-```bash
-man ./_printf.3
-```
-## 🧪 Testing & Memory Check
-
-To ensure the robustness of our `_printf` implementation, we conducted extensive testing, including memory leak detection.
-
 ### 💻 Usage Example
 You can test the function with a `main.c` file like this:
 
@@ -144,14 +131,13 @@ int main(void)
     return (0);
 }
 ```
-```c
-Expected Output:
 
-Hello world
-Char: A
-Number: 42
-Negative: -7
-Percent: %
+### 3. Usage in your project
+
+To test the function with your own `main.c` file, simply link the library during compilation:
+
+```bash
+gcc -Wall -Wextra -Werror -pedantic main.c libprintf.a -o _printf_test 
 ```
 
 ### 🛡️ Memory Check (Valgrind)
