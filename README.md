@@ -91,7 +91,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 Clone the repository using Git:
 
 ```bash
-git clone [https://github.com/votre_pseudo/holbertonschool-printf.git](https://github.com/votre_pseudo/holbertonschool-printf.git)
+git clone https://github.com/Hugol4ka/holbertonschool-printf.git
 ```  
 ## 🛠️ Installation & Compilation
 
